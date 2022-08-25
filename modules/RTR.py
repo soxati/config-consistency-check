@@ -4,7 +4,8 @@ import netmiko
 class RTR:
     TEMPLATES = {
         'brief': 'modules/cisco_xr_show_interface_brief.textfsm',
-        'route': 'modules/cisco_xr_show_ip_route.textfsm'
+        'route': 'modules/cisco_xr_show_ip_route.textfsm',
+        'arp': 'modules/cisco_xr_show_arp.textfsm'
     }
 
     def __init__(self, ip, user, password):
@@ -25,6 +26,11 @@ class RTR:
         return cli_list
 
     def get_int_brief(self) -> list:
-        command = 'show ipv4 interface brief '
+        command = 'show ipv4 interface brief'
         cli_list = self.ssh.send_command(command, use_textfsm=True, textfsm_template=RTR.TEMPLATES['brief'])
+        return cli_list
+
+    def get_arp(self) -> list:
+        command = 'show arp vrf all'
+        cli_list = self.ssh.send_command(command, use_textfsm=True, textfsm_template=RTR.TEMPLATES['arp'])
         return cli_list
