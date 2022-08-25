@@ -5,7 +5,8 @@ class RTR:
     TEMPLATES = {
         'brief': 'modules/cisco_xr_show_interface_brief.textfsm',
         'route': 'modules/cisco_xr_show_ip_route.textfsm',
-        'arp': 'modules/cisco_xr_show_arp.textfsm'
+        'arp': 'modules/cisco_xr_show_arp.textfsm',
+        'vrf': 'modules/cisco_xr_show_vrf.textfsm'
     }
 
     def __init__(self, ip, user, password):

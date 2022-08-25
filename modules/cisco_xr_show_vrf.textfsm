@@ -1,0 +1,10 @@
+Value Required VRF (\S+)
+Value Required RD (not set|[\d:\.]+)
+Value List IMPORT_RT ([\d:\.]+)
+Value List EXPORT_RT ([\d:\.]+)
+
+Start
+  ^\w+ -> Continue.Record
+  ^${VRF}\s+${RD}
+  ^\s+import\s+${IMPORT_RT}\s+IPV4\s+Unicast
+  ^\s+export\s+${EXPORT_RT}\s+IPV4\s+Unicast
