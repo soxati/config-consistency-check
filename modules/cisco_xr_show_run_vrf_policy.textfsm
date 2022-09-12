@@ -1,0 +1,7 @@
+Value Required VRF (\S+)
+Value Required POLICY (\S+)
+
+# show run formal vrf | i route-policy
+
+Start
+  ^vrf ${VRF} address-family ipv4 unicast export route-policy ${POLICY} -> Record
