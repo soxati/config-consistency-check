@@ -1,0 +1,11 @@
+Value Required BD_GROUP (\S+)
+Value Required BD_NAME (\S+)
+Value EVI (\d+)
+Value List AC ([\w+/\.]+)
+Value List AC_STATE (\S+)
+
+Start
+  ^Bridge group:.* -> Continue.Record
+  ^Bridge group: ${BD_GROUP}, bridge-domain: ${BD_NAME}, id -> Continue
+  ^\s+evi: ${EVI} -> Continue
+  ^\s+AC:\s+${AC}, state is ${AC_STATE} -> Continue
