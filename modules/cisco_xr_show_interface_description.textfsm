@@ -1,0 +1,8 @@
+Value Required IFNAME ([\w+/\.]+)
+Value Required ADMIN_STATE (up|down|admin-down)
+Value Required INT_STATE (up|down|admin-down)
+Value DESCRIPTION ([\S ]+)
+
+
+Start
+  ^\s*${IFNAME}\s+${ADMIN_STATE}\s+${INT_STATE}\s+${DESCRIPTION} -> Record
