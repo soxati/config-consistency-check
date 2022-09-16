@@ -1,0 +1,7 @@
+Value VPN_ID (\d+)
+Value ENCAP (\S+)
+Value BD_NAME (\S+)
+Value TYPE (\S+
+
+Start
+  ^\s*${VPN_ID}\s+${ENCAP}\s+${BD_NAME}\s+${TYPE} -> Record
