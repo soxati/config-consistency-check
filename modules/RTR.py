@@ -22,6 +22,7 @@ class RTR:
             'secret': password
         }
         self.ssh = netmiko.ConnectHandler(**rtr_dict)
+        self.hostname = self.ssh.find_prompt()[:-1]
 
     def get_arp(self) -> list:
         command = 'show arp vrf all'

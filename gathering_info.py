@@ -81,4 +81,8 @@ def main():
             except NoPing:
                 print(f'No ping from {threads[task]}')
             except Exception as e:
-                print(f'Got an error {e} from {threads[task]}', LOG_FILE)
+                print(f'Got an error {e} from {threads[task]}')
+
+
+if __name__ == '__main__':
+    main()
