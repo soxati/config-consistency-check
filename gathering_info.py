@@ -18,7 +18,11 @@ CONFIG_PATH = Path('configs/')
 CONFIG_PATH.mkdir(exist_ok=True)
 DATE = datetime.now().strftime('%Y%m%d_%H%M')
 LOG_PATH = CONFIG_PATH / f'log_{DATE}.txt'
-LOG_FILE = LOG_PATH.open('a')
+if LOG_PATH.exists():
+    open_mode = 'a'
+else:
+    open_mode = 'w'
+LOG_FILE = LOG_PATH.open(open_mode)
 SYSTEM = platform.system()
 
 
@@ -45,7 +49,9 @@ def ping_host(ip, result=True):
         reply_re = ', [1-9]+ received,'
     ping_launcher = subprocess.Popen(command, stdout=subprocess.PIPE)
     out, err = ping_launcher.communicate()
-    reply = out.decode(sys.stdin.encoding)
+    # reply = out.decode(sys.stdin.encoding)
+    # RU-win
+    reply = out.decode('cp866')
     if result:
         print(reply)
     if re.search(reply_re, reply):
@@ -62,10 +68,10 @@ def get_info(ip, user, password):
         rtr = RTR(ip, user, password)
         print(f'Connected to {ip}')
         data = rtr.get_all_commands()
-        print(f'Finished with {ip}', LOG_FILE)
+        print(f'Finished with {ip}', file=LOG_FILE)
         return rtr.hostname, data
     else:
-        print(f'No ping reply from {ip}', LOG_FILE)
+        print(f'No ping reply from {ip}', file=LOG_FILE)
         raise NoPing
 
 
