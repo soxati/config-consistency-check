@@ -1,0 +1,19 @@
+import json
+import csv
+with open('C:\config-consistency-check-main\configs\GOM-54-ACC-470_20220926_1448.json') as json_file:
+	data = json.load(json_file)
+#'arp','evpn','brief','desc','route','bd','vrf_policy','vrf':
+coll = ['arp','evpn','brief','desc','route','bd','vrf_policy','vrf']
+data_file = open('C:\config-consistency-check-main\conf\GOM-54-ACC-470_20220926_1448.csv', 'w')
+for i in coll:    
+    employee_data = data[i]
+    #data_file = open('C:\config-consistency-check-main\conf\GOM-54-ACC-470_20220926_1448.csv', 'w')
+    csv_writer = csv.writer(data_file)
+    count = 0
+    for emp in employee_data:
+        if count == 0:
+            header = emp.keys()
+            csv_writer.writerow(header)
+            count += 1
+        csv_writer.writerow(emp.values())
+data_file.close()
